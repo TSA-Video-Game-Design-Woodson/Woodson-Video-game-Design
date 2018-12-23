@@ -1,5 +1,4 @@
 sceneSetups:
-- path: C:/Users/RepublicGamer/Downloads/Dialogue-System-master/Dialogue-System-master/Dialogue
-    System/Assets/Main.unity
+- path: Assets/Official Scene.unity
   isLoaded: 1
   isActive: 1
