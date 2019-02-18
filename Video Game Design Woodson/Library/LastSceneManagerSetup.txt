@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/TSA_Room.unity
+- path: Assets/Official Scene.unity
   isLoaded: 1
   isActive: 1
