@@ -30,6 +30,7 @@ public class Menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(speakers.Length);
        // dialogueBox.SetActive(true);
        // dialogueButton.SetActive(true);
     }
@@ -64,16 +65,19 @@ public class Menu : MonoBehaviour
     {
         player.SetActive(false);
        // dialogueBox.SetActive(false);
-       // dialogueButton.SetActive(false);
+        
         menuObject.SetActive(true);
         buttonOpen.SetActive(false);
         closeAllDialogue();
+        dialogueButton.SetActive(false);
     }
     public void closeAllDialogue()
     {
         
         foreach (GameObject speaker in speakers)
         {
+            speaker.GetComponent<DialogueProximity>().enabled = false;
+            speaker.GetComponent<DialogueProximity>().active = false;
             speaker.SetActive(false);
         }
     }
@@ -82,6 +86,7 @@ public class Menu : MonoBehaviour
         
         foreach (GameObject speaker in speakers)
         {
+            speaker.GetComponent<DialogueProximity>().enabled = true;
             speaker.SetActive(true);
         }
     }

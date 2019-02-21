@@ -50,9 +50,9 @@ public class JSONParse : MonoBehaviour
     void Start()
     {
         path = "Assets/Miscellaneous/PlayerStats.json";
-        
-           
-       
+
+
+        playerStats = JsonConvert.DeserializeObject<PlayerStats>(readFromFile(path));
 
     }
     public string readFromFile(string path)
@@ -71,10 +71,11 @@ public class JSONParse : MonoBehaviour
         AssetDatabase.ImportAsset(path);
     }
     // Update is called once per frame
+   
     void Update()
     {
         
-        playerStats = JsonConvert.DeserializeObject<PlayerStats>(readFromFile(path));
+        
         string thing = JsonConvert.SerializeObject(playerStats);
         //writeToFile(path, thing); //persistent cause why not
 

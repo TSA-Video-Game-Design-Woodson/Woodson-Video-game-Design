@@ -11,7 +11,7 @@ public class Fatigue : MonoBehaviour
     float top;
     GameObject reader;
     JSONParse myScript;
-    float currentFatigue = 80;
+    int currentFatigue = 80;
     
     // Start is called before the first frame update
     void Start()
@@ -20,9 +20,9 @@ public class Fatigue : MonoBehaviour
         fBarColor = fatigueBar.GetComponent<Image>();
        // Debug.Log(fBarColor.color.g);
         reader = GameObject.FindWithTag("Reader");
-       // myScript = (JSONParse)reader.GetComponent(typeof(JSONParse));
-        //JSONParse script = reader.GetComponents<JSONParse>;
-        //currentFatigue = myScript.playerStats.myPlayer.Fatigue;
+        //myScript = (JSONParse)reader.GetComponent(typeof(JSONParse));
+         myScript = reader.GetComponent<JSONParse>();
+        currentFatigue = myScript.playerStats.myPlayer.Fatigue;
         
 
         fBar.anchoredPosition -= new Vector2(0, fBar.anchoredPosition.y + currentFatigue * 1.32f);
@@ -35,10 +35,10 @@ public class Fatigue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      //  myScript.playerStats.myPlayer.Fatigue++;        
-        currentFatigue = 80;
+                
+        currentFatigue = myScript.playerStats.myPlayer.Fatigue;
         
-        Debug.Log(reader.activeInHierarchy);
+     //   Debug.Log(reader.activeInHierarchy);
         fBar.anchoredPosition -= new Vector2(0, fBar.anchoredPosition.y + currentFatigue * 1.32f);
         if(currentFatigue >= 0 && currentFatigue < 25)
         {

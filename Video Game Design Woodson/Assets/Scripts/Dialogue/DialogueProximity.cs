@@ -18,26 +18,36 @@ public class DialogueProximity : MonoBehaviour
         //DialogueText.SetActive(false);   
         speakers = GameObject.FindGameObjectsWithTag("Speaker");
     }
-    
+
     // Update is called once per frame
     void Update()
     {
         int totalActive = 0;
-        foreach(GameObject speaker in speakers)
+        int totalWorking = 0;
+        foreach (GameObject speaker in speakers)
         {
             if (speaker.GetComponent<DialogueProximity>().active)
             {
                 anyoneActive = true;
                 totalActive++;
             }
+            if (speaker.activeInHierarchy)
+            {
+                totalWorking++;
+            }
         }
-        if(totalActive == 0)
+        if (totalActive == 0)
         {
             anyoneActive = false;
-            
+
         }
         totalActive = 0;
-        if (Vector3.Distance(Player.transform.position, gameObject.transform.position) <= 1.0 )
+        Debug.Log(totalWorking);
+        if (totalWorking == 0)
+        {
+            active = false;
+        }  
+     else if (Vector3.Distance(Player.transform.position, gameObject.transform.position) <= 1.0)
         {
             DialogueText.SetActive(true);
             //DialogueText.GetComponent<PlayerController>().money
@@ -57,6 +67,7 @@ public class DialogueProximity : MonoBehaviour
                 DialogueText.SetActive(true);
             }
             
-        }  
+        }
+        totalWorking = 0;
     }
 }
