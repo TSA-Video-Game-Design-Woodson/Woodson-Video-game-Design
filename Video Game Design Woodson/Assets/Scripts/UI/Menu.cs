@@ -16,6 +16,7 @@ public class Menu : MonoBehaviour
     public GameObject ShopMenu;
     public Button ShopClose;
     public GameObject player;
+    GameObject[] speakers;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class Menu : MonoBehaviour
         CloseButton.onClick.AddListener(CloseMenu);
         ShopOpen.onClick.AddListener(OpenShop);
         ShopClose.onClick.AddListener(CloseShop);
+        speakers = GameObject.FindGameObjectsWithTag("Speaker");
     }
 
     // Update is called once per frame
@@ -34,36 +36,54 @@ public class Menu : MonoBehaviour
     public void OpenShop()
     {
         ShopMenu.SetActive(true);
-        dialogueBox.SetActive(false);
+       //   dialogueBox.SetActive(false);
         dialogueButton.SetActive(false);
-       // menuObject.SetActive(false);
-       // buttonOpen.SetActive(false);
-
+        // menuObject.SetActive(false);
+        // buttonOpen.SetActive(false);
+        closeAllDialogue();
 
     }
     public void CloseShop()
     {
         ShopMenu.SetActive(false);
-        dialogueBox.SetActive(true);
-        dialogueButton.SetActive(true);
-        
-        
+        //dialogueBox.SetActive(true);
+        // dialogueButton.SetActive(true);
+        openAllDialogue();
+
     }
     public void CloseMenu()
     {
         player.SetActive(true);
         menuObject.SetActive(false);
         buttonOpen.SetActive(true);
-        dialogueBox.SetActive(true);
-        dialogueButton.SetActive(true);
+      //  dialogueBox.SetActive(true);
+        //dialogueButton.SetActive(true);
+        openAllDialogue();
     }
     public void OpenMenu()
     {
         player.SetActive(false);
-        dialogueBox.SetActive(false);
-        dialogueButton.SetActive(false);
+       // dialogueBox.SetActive(false);
+       // dialogueButton.SetActive(false);
         menuObject.SetActive(true);
         buttonOpen.SetActive(false);
+        closeAllDialogue();
+    }
+    public void closeAllDialogue()
+    {
+        
+        foreach (GameObject speaker in speakers)
+        {
+            speaker.SetActive(false);
+        }
+    }
+    public void openAllDialogue()
+    {
+        
+        foreach (GameObject speaker in speakers)
+        {
+            speaker.SetActive(true);
+        }
     }
 
 }

@@ -4,19 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Fatigue : MonoBehaviour
 {
-    public GameObject player;
+    
     public GameObject fatigueBar;
     RectTransform fBar; //fBar is short for fatigueBar
     Image fBarColor;
     float top;
+    GameObject reader;
+    JSONParse myScript;
+    float currentFatigue = 80;
+    
     // Start is called before the first frame update
     void Start()
     {
         fBar = fatigueBar.GetComponent(typeof(RectTransform)) as RectTransform;
         fBarColor = fatigueBar.GetComponent<Image>();
-        Debug.Log(fBarColor.color.g);   
-        //fBar.Translate(new Vector3(fBar.position.x, 0, fBar.position.z));
+       // Debug.Log(fBarColor.color.g);
+        reader = GameObject.FindWithTag("Reader");
+       // myScript = (JSONParse)reader.GetComponent(typeof(JSONParse));
+        //JSONParse script = reader.GetComponents<JSONParse>;
+        //currentFatigue = myScript.playerStats.myPlayer.Fatigue;
         
+
+        fBar.anchoredPosition -= new Vector2(0, fBar.anchoredPosition.y + currentFatigue * 1.32f);
+        
+
         
     }
     //-131 is below the screen
@@ -24,29 +35,32 @@ public class Fatigue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //btw color is using between 0-1 not between 0-255
-        //Debug.Log(fBarColor.color.r);
-        fBar.Translate(Vector3.left *5f* Time.deltaTime); //go down progressively
+      //  myScript.playerStats.myPlayer.Fatigue++;        
+        currentFatigue = 80;
         
-        
-        Vector3 health = fBar.anchoredPosition;
-        Debug.Log(health.y % 1.32);
-        if (fBarColor.color.r <= 0.98) {
-            if (health.y % 1.32 <= 0 && health.y % 1.32 >= -0.1)
-            {
-                fBarColor.color = new Color(fBarColor.color.r + 0.02f, fBarColor.color.g, fBarColor.color.b, fBarColor.color.a);
-            }
-        }
-        else if(fBarColor.color.g != 0)
+        Debug.Log(reader.activeInHierarchy);
+        fBar.anchoredPosition -= new Vector2(0, fBar.anchoredPosition.y + currentFatigue * 1.32f);
+        if(currentFatigue >= 0 && currentFatigue < 25)
         {
-            if (health.y % 1.32 <= 0 && health.y % 1.32 >= -0.1)
-            {
-                fBarColor.color = new Color(fBarColor.color.r, fBarColor.color.g-0.01f, fBarColor.color.b, fBarColor.color.a);
-            }
+            fBarColor.color = new Color(0, 255, 0);
+        }else if (currentFatigue >= 25 && currentFatigue < 50)
+        {
+            fBarColor.color = new Color(240,255, 0);
+        }else if (currentFatigue>= 50 && currentFatigue < 75)
+        {
+            fBarColor.color = new Color(255, 150, 0);
         }
+        else if(currentFatigue >= 75 && currentFatigue <= 100)
+        {
+            fBarColor.color = new Color(255, 0, 0 );
+        }
+
+
+
         
         
         
 
     }
+   
 }
