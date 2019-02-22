@@ -66,7 +66,7 @@
     <Compile Include="Assets\Scripts\Dialogue\DialogueTrigger.cs" />
     <Compile Include="Assets\Scripts\Minigame\MinigameManager.cs" />
     <Compile Include="Assets\Scripts\NPCs\DetectPlayerPos.cs" />
-    <Compile Include="Assets\Scripts\NPCs\RandAction.cs" />
+    <Compile Include="Assets\Scripts\NPCs\NPCMovement.cs" />
     <Compile Include="Assets\Scripts\Player\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Player\Movement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />

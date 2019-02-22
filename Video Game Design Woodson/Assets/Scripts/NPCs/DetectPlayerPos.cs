@@ -24,26 +24,26 @@ public class DetectPlayerPos : MonoBehaviour
 
         float PlayerRelativeY = PosYNPC - PosYPlayer;
 
-        if (PosYNPC > PosYPlayer && PosYPlayer > PlayerRelativeY || PosYPlayer < PlayerRelativeY && NPCAnim.GetBool("Moving") == false)
+        if (PosYNPC > PosYPlayer && PosYPlayer > PlayerRelativeY || PosYPlayer < PlayerRelativeY && NPCAnim.GetBool("Idle") == true)
         {
             NPCAnim.SetBool("WasMovingLeft/Right", false);
             NPCAnim.SetBool("WasMovingUp", false);
         }
 
-        else if (PosYNPC < PosYPlayer && PosYPlayer > PlayerRelativeY || PosYPlayer < PlayerRelativeY && NPCAnim.GetBool("Moving") == false)
+        else if (PosYNPC < PosYPlayer && PosYPlayer > PlayerRelativeY || PosYPlayer < PlayerRelativeY && NPCAnim.GetBool("Idle") == true)
         {
             NPCAnim.SetBool("WasMovingLeft/Right", false);
             NPCAnim.SetBool("WasMovingUp", true);
         }
 
-        if (PosXNPC < PosXPlayer && PosYNPC >= PlayerRelativeY && NPCAnim.GetBool("Moving") == false)
+        if (PosXNPC < PosXPlayer && PosYNPC >= PlayerRelativeY && NPCAnim.GetBool("Idle") == true)
         {
             NPCAnim.SetBool("WasMovingLeft/Right", true);
             NPC.GetComponent<SpriteRenderer>().flipX = true;
             NPCAnim.SetBool("WasMovingUp", false);
         }
 
-        else if(PosXNPC > PosXPlayer && PosYNPC <= PlayerRelativeY && NPCAnim.GetBool("Moving") == false)
+        else if(PosXNPC > PosXPlayer && PosYNPC <= PlayerRelativeY && NPCAnim.GetBool("Idle") == true)
         {
             NPCAnim.SetBool("WasMovingLeft/Right", true);
             NPC.GetComponent<SpriteRenderer>().flipX = false;
